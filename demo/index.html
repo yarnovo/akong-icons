@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>akong icons · demo</title>
+<style>
+  :root {
+    --bg: #fcfcfc;
+    --fg: #181818;
+    --fg-muted: #6e6e73;
+    --border: #efeff0;
+    --accent: #e8456a;
+    --bg-subtle: #f5f5f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1c1c1c; --fg: #f0f0f0; --fg-muted: #909090; --border: #2c2c2c; --bg-subtle: #242424; }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", system-ui, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 24px; max-width: 760px; margin-inline: auto; }
+  h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.012em; }
+  h2 { font-size: 16px; margin: 32px 0 12px; letter-spacing: -0.012em; }
+  .sub { color: var(--fg-muted); font-size: 13px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 8px; background: var(--bg-subtle); border-radius: 12px; }
+  .cell svg { color: var(--fg); }
+  .name { font-size: 11px; color: var(--fg-muted); }
+  .row { display: flex; align-items: center; gap: 24px; padding: 16px; background: var(--bg-subtle); border-radius: 12px; }
+  .row svg { color: var(--fg); }
+  .row .label { font-size: 11px; color: var(--fg-muted); margin-top: 4px; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  @keyframes ak-icon-spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+  <h1>akong icons</h1>
+  <p class="sub">封装 lucide · antd 风 props · 跨端 (Web + RN)</p>
+
+  <h2>导航</h2>
+  <div class="grid" id="nav"></div>
+
+  <h2>方向</h2>
+  <div class="grid" id="dir"></div>
+
+  <h2>动作</h2>
+  <div class="grid" id="act"></div>
+
+  <h2>互动</h2>
+  <div class="grid" id="int"></div>
+
+  <h2>媒体 / 状态 / 其他</h2>
+  <div class="grid" id="other"></div>
+
+  <h2>变体</h2>
+  <div class="row">
+    <div class="col"><span style="display:inline-flex;width:16px;height:16px"></span><div class="label">size 16</div></div>
+    <div class="col"><span style="display:inline-flex;width:20px;height:20px"></span><div class="label">size 20</div></div>
+    <div class="col"><span style="display:inline-flex;width:32px;height:32px"></span><div class="label">size 32</div></div>
+    <div class="col"><span style="display:inline-flex;width:48px;height:48px"></span><div class="label">size 48</div></div>
+  </div>
+  <p class="sub" style="margin-top: 12px;">这个 demo 是静态 HTML · 真实 React 包装的 demo 见 <a href="https://github.com/yarnovo/akong-icons">仓 README</a>。</p>
+
+<script>
+  // demo 静态展示 · 真包装在 React 里 · 这里只列名字
+  const groups = {
+    nav: ['Home', 'Search', 'Bell', 'User', 'MessageSquare', 'ShoppingBag', 'ShoppingCart', 'Settings'],
+    dir: ['ChevronLeft', 'ChevronRight', 'ChevronDown', 'ChevronUp'],
+    act: ['Plus', 'X', 'Check', 'Edit', 'Trash', 'Send', 'Filter', 'ArrowLeftRight', 'MoreHorizontal', 'MoreVertical'],
+    int: ['Heart', 'Bookmark', 'Share', 'Star'],
+    other: ['Camera', 'Image', 'Loader', 'Eye', 'EyeOff', 'At', 'Hash'],
+  }
+  for (const [key, names] of Object.entries(groups)) {
+    const container = document.getElementById(key)
+    for (const n of names) {
+      const cell = document.createElement('div')
+      cell.className = 'cell'
+      cell.innerHTML = `<div style="width:24px;height:24px;background:var(--border);border-radius:4px"></div><div class="name">${n}</div>`
+      container.appendChild(cell)
+    }
+  }
+</script>
+</body>
+</html>

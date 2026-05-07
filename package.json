@@ -1,0 +1,47 @@
+{
+  "name": "@akong/icons",
+  "version": "0.1.0",
+  "description": "akong icons · 封装 lucide · antd 风统一 props · 跨端 (Web + React Native)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.native.ts",
+      "default": "./src/index.ts"
+    },
+    "./style.css": "./src/icons.css"
+  },
+  "files": ["src", "README.md"],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "lucide-react": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "lucide-react-native": { "optional": true },
+    "react-native": { "optional": true },
+    "react-native-svg": { "optional": true }
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.14",
+    "jsdom": "^29.1.1",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  },
+  "publishConfig": { "access": "public" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yarnovo/akong-icons.git"
+  },
+  "license": "MIT"
+}
