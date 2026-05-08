@@ -1,5 +1,7 @@
 # @akong/icons
 
+> ← 回 [akong design system](https://yarnovo.github.io/akong-core/) 总站
+
 封装 lucide · antd 风统一 props · 跨端（Web + React Native）。
 
 ## 安装
