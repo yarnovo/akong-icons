@@ -22,12 +22,13 @@
   .sub { color: var(--fg-muted); font-size: 13px; margin-bottom: 16px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
   .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 8px; background: var(--bg-subtle); border-radius: 12px; }
-  .cell svg { color: var(--fg); }
+  .cell svg { color: var(--fg); width: 24px; height: 24px; stroke-width: 1.75; }
   .name { font-size: 11px; color: var(--fg-muted); }
-  .row { display: flex; align-items: center; gap: 24px; padding: 16px; background: var(--bg-subtle); border-radius: 12px; }
+  .row { display: flex; align-items: center; gap: 24px; padding: 16px; background: var(--bg-subtle); border-radius: 12px; flex-wrap: wrap; }
   .row svg { color: var(--fg); }
   .row .label { font-size: 11px; color: var(--fg-muted); margin-top: 4px; }
   .col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .spin { animation: ak-icon-spin 1s linear infinite; }
   @keyframes ak-icon-spin { to { transform: rotate(360deg); } }
 </style>
 </head>
@@ -50,17 +51,20 @@
   <h2>媒体 / 状态 / 其他</h2>
   <div class="grid" id="other"></div>
 
-  <h2>变体</h2>
+  <h2>变体 (size · spin)</h2>
   <div class="row">
-    <div class="col"><span style="display:inline-flex;width:16px;height:16px"></span><div class="label">size 16</div></div>
-    <div class="col"><span style="display:inline-flex;width:20px;height:20px"></span><div class="label">size 20</div></div>
-    <div class="col"><span style="display:inline-flex;width:32px;height:32px"></span><div class="label">size 32</div></div>
-    <div class="col"><span style="display:inline-flex;width:48px;height:48px"></span><div class="label">size 48</div></div>
+    <div class="col"><i data-lucide="house" style="width:16px;height:16px"></i><div class="label">size 16</div></div>
+    <div class="col"><i data-lucide="house" style="width:20px;height:20px"></i><div class="label">size 20</div></div>
+    <div class="col"><i data-lucide="house" style="width:32px;height:32px"></i><div class="label">size 32</div></div>
+    <div class="col"><i data-lucide="house" style="width:48px;height:48px"></i><div class="label">size 48</div></div>
+    <div class="col"><i data-lucide="loader-circle" class="spin" style="width:24px;height:24px"></i><div class="label">spin</div></div>
   </div>
-  <p class="sub" style="margin-top: 12px;">这个 demo 是静态 HTML · 真实 React 包装的 demo 见 <a href="https://github.com/yarnovo/akong-icons">仓 README</a>。</p>
+  <p class="sub" style="margin-top: 12px;">React 用法 <code style="background:var(--bg-subtle);padding:2px 6px;border-radius:4px">&lt;Home size={20} /&gt;</code> · 详见 <a href="https://github.com/yarnovo/akong-icons">github</a></p>
 
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script>
-  // demo 静态展示 · 真包装在 React 里 · 这里只列名字
+  // PascalCase → kebab-case · lucide UMD 用 createIcons({ icons: { Home, ... } })
+  // 但 UMD 也支持按 data-lucide=kebab 自动渲染 (调一次 lucide.createIcons())
   const groups = {
     nav: ['Home', 'Search', 'Bell', 'User', 'MessageSquare', 'ShoppingBag', 'ShoppingCart', 'Settings'],
     dir: ['ChevronLeft', 'ChevronRight', 'ChevronDown', 'ChevronUp'],
@@ -68,15 +72,19 @@
     int: ['Heart', 'Bookmark', 'Share', 'Star'],
     other: ['Camera', 'Image', 'Loader', 'Eye', 'EyeOff', 'At', 'Hash'],
   }
+  // PascalCase → kebab (相邻大写交界插 -)
+  const toKebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z][a-z])/g, '$1-$2').toLowerCase()
   for (const [key, names] of Object.entries(groups)) {
     const container = document.getElementById(key)
     for (const n of names) {
       const cell = document.createElement('div')
       cell.className = 'cell'
-      cell.innerHTML = `<div style="width:24px;height:24px;background:var(--border);border-radius:4px"></div><div class="name">${n}</div>`
+      cell.innerHTML = `<i data-lucide="${toKebab(n)}"></i><div class="name">${n}</div>`
       container.appendChild(cell)
     }
   }
+  lucide.createIcons()
 </script>
+
 </body>
 </html>
