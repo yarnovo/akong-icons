@@ -30,9 +30,29 @@
   .col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .spin { animation: ak-icon-spin 1s linear infinite; }
   @keyframes ak-icon-spin { to { transform: rotate(360deg); } }
+  .back-to-index {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    padding: 8px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 13px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+  }
+  .back-to-index:hover {
+    background: var(--bg-subtle);
+    color: var(--fg);
+  }
 </style>
 </head>
 <body>
+  <a href="https://yarnovo.github.io/aily-ui-core/" class="back-to-index">← 回 aily-ui 总站</a>
   <h1>aily-ui icons</h1>
   <p class="sub">封装 lucide · antd 风 props · 跨端 (Web + RN)</p>
 
